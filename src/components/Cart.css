@@ -1,0 +1,35 @@
+.cart-block {
+   margin: 0 auto;
+   text-align: center;
+    width: 40rem;
+   min-height: 30rem;
+   z-index: 3;
+   border: 1px solid rgb(177, 163, 163);;
+   border-radius: .5rem;
+}
+.close-cart {
+    position: fixed;
+    top: 5rem;
+    right: 34rem;
+    cursor: pointer;
+}
+
+.cart-display {
+    display: block;
+}
+
+.cart-item-remove {
+    cursor: pointer;
+}
+
+.cart-empty-button {
+    margin: 0 auto;
+}
+
+
+
+
+
+.product-img {
+    max-height: 5rem;
+}

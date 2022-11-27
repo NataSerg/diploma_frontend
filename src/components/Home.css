@@ -1,0 +1,12 @@
+.home-container {
+   margin: 0 auto;
+}
+.first-words {
+    font-size: 9rem;
+}
+.home-image {
+    max-height: 9rem;
+}
+.carousel-img {
+    max-height: 15rem;
+}

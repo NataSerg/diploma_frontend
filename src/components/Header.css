@@ -1,0 +1,22 @@
+.header {
+    border: 1px solid rgb(181,174,174);
+    box-shadow: 0 5px 15px 6px rgba(181, 174, 174, 0.5);
+}
+
+.cart-icon {
+    font-size: 1.3rem;
+}
+
+.cart-in-header {
+    position: relative;
+}
+
+
+.cart-count {
+    display: block;
+    position: fixed;
+    top: 1rem;
+}
+.cart-count-white {
+    color: white;
+}
