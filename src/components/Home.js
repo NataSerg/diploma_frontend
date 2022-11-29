@@ -1,25 +1,53 @@
 import "./Home.css";
-import { Col, Carousel } from "react-bootstrap";
-
-
+import { Carousel } from "react-bootstrap";
 
 
 function Home() {
   
-  return <> 
-      <div className="home-container d-flex flex-column justify-content-center">
-        <div className="first-words"><img className="home-image" src="/images/3.jpg" />BREATHE<img className="home-image" src="/images/1.jpg" /></div>
-        <div className="first-words"><img className="home-image" src="/images/13.jpg" /><img className="home-image" src="/images/12.jpg" />DRAW<img className="home-image" src="/images/22.jpg" /></div>
-        <div className="first-words"><img className="home-image" src="/images/2.jpg" />INSPIRE <img className="home-image" src="/images/24.jpg" /></div>
-         
-      <p>Creative drawings espessially for you</p>
-      <p>Beauty will save the world</p>
-      <p>The warmiest wishes for you through marvelous postcards</p>
+  return <div className="home-container d-flex justify-content-around align-items-center"> 
+      
+      <div className="home-carousel">
+      <Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block carousel-img"
+      src="/images/13.jpg"
+      alt="First slide"
+    />
     
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block carousel-img"
+      src="/images/2.jpg"
+      alt="Second slide"
+    />
+
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block carousel-img"
+      src="/images/12.jpg"
+      alt="Third slide"
+    />
+
+  </Carousel.Item>
+</Carousel>  
+</div>
+      <div className="text-block align-self-start">
+        <h5 className="home-text"><span>Keep </span>calm</h5>
+        <h5 className="home-text">and <span>enjoy</span></h5>
+        <h5 className="home-text">the pictures</h5>
+        <h6 className="text-block-small">When something is going wrong, <br /> just relax, drink a cup of coffe... <br /> and buy painting.</h6>
+      
+
       </div>
+  
+    
+    
      
       
-    </>
+    </div>
 
 }
 
