@@ -38,7 +38,7 @@ function Home() {
         <h5 className="home-text"><span>Keep </span>calm</h5>
         <h5 className="home-text">and <span>enjoy</span></h5>
         <h5 className="home-text">the pictures</h5>
-        <h6 className="text-block-small">When something is going wrong, <br /> just relax, drink a cup of coffe... <br /> and buy painting.</h6>
+        <h6 className="text-block-small">When something is going wrong, <br /> just relax, drink a cup of coffe... <br /> and buy an awesome painting.</h6>
       
 
       </div>

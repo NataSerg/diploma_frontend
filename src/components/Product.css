@@ -1,0 +1,12 @@
+.card-image {
+    box-shadow: 0px 0px 10px 8px rgb(206, 206, 206);
+}
+.card-item {
+    text-align: center;
+    position: relative;
+}
+.add-to-cart-button {
+    position: absolute;
+    top: 65%;
+    right: 29%;
+}

@@ -1,3 +1,19 @@
+.page-item .page-link {
+    background: rgb(250, 248, 248);
+    color: rgb(72, 71, 71);
+}
+
+.page-item .page-link:hover {
+    background: rgb(250, 248, 248);
+    color: rgb(1, 1, 1);
+}
+
 .page-item.active .page-link {
-    background-color: rgb(72, 203, 172);
+    background: rgb(72, 71, 71)!important;
+    color: rgb(232, 232, 232)!important;
+    border-color: rgb(72, 71, 71) !important;
+}
+
+.page-link {
+    border: 1px solid rgb(72, 71, 71) !important;
 }

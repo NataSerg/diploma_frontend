@@ -70,7 +70,6 @@ const data = {
         localStorage.setItem("cart", JSON.stringify(products.filter(product => product.addedToCart)));
     }, [products]);
 
-
     const addToCart = id => {
         console.log(id);
         setProducts(products.map(product => product.id === id ? { ...product, addedToCart: true } : { ...product })); 
@@ -79,17 +78,20 @@ const data = {
 
     
     return <> <Outlet context={products} />
-        <Col xs={12}><h2 className="mb-4">Products</h2></Col>
+        <Col xs={12}><div className="mt-4 mb-4 d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary m-1">See all</button>
+            <button type="button" class="btn btn-secondary m-1">White and black</button>
+            <button type="button" class="btn btn-secondary m-1">Vintage</button>
+            <button type="button" class="btn btn-secondary m-1">City illustartion</button>
+            <button type="button" class="btn btn-secondary m-1">Children's illustartion</button>
+        </div></Col>
         {(products.filter(product => product.id > ((currentPage - 1) * data.limit) && product.id <= ((currentPage - 1) * data.limit) + data.limit)).map(product =>
         <Product product={product}
             key={product.id}
             addToCart={addToCart}
         />
         )}
-        
-       
-    
-        
+
     {registartionFlag ? <Navigate to="/registartion" /> : ''}    
 
         <Col xs={12} className={'mt-4'}>
