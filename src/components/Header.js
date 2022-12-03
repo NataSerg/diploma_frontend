@@ -2,11 +2,13 @@ import { Navbar, Nav, Container, Badge } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
 import {BsCart4} from "react-icons/bs";
 import "./Header.css";
+import Contacts from "./Contacts";
+
 
 function Header({totalCount}) {
     const location = useLocation();
 
-    return <Navbar bg="white" variant="light" sticky="top" className="header" >
+    return <><Navbar bg="white" variant="light" sticky="top" className="header" >
         <Container>
             <Link to="/" className="navbar-brand">Home</Link>
             <Nav className="me-auto">
@@ -17,6 +19,8 @@ function Header({totalCount}) {
             </Nav>
         </Container>
     </Navbar>
+        <Contacts /> 
+        </>
 }
 
 export default Header;

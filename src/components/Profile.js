@@ -32,7 +32,7 @@ function Profile({user, setUser}) {
     <Form.Control defaultValue={user?.email} type="email" ref={emailRef} placeholder="Enter email" />
     <Form.Label className="mt-3">Age</Form.Label>
     <Form.Control defaultValue={user?.age} type="number" ref={ageRef} placeholder="Enter age" />
-    <Button variant="primary" size="lg" className="mt-4" onClick={saveLogin}>Save</Button>
+    <Button variant="secondary" size="lg" className="mt-4" onClick={saveLogin}>Save</Button>
    
         </Form.Group>
             {flag ? <Navigate to="/products" /> : ''}    

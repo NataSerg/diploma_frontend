@@ -13,14 +13,19 @@
 }
 
 @font-face {
-    font-family: Swansea;
-    src: url(../fonts/Swansea/Swansea-q3pd.ttf);
+    font-family: Ju;
+    src: url(../fonts/Ju/JuPlusMedium-ywyYq.otf);
+}
+
+@font-face {
+    font-family: JuThin;
+    src: url(../fonts/Ju/JuPlusLight-519yx.otf);
 }
 
 
 .home-container{
     width: 100%;
-    margin-top: 3.5rem;
+    margin-top: 5rem;
 }
 
 .home-carousel{
@@ -65,7 +70,7 @@ a.carousel-control-prev>span.carousel-control-prev-icon {
 
 .home-text {
     text-align: center;
-    font-family: Swansea;
+    font-family: Ju;
     font-size: 7.5rem;
     letter-spacing: .002em;
     line-height: 92%;
@@ -83,4 +88,34 @@ a.carousel-control-prev>span.carousel-control-prev-icon {
     text-align: right;
     font-family: Montepetrum;
     font-size: 2.3rem;
+}
+
+.about-me {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    font-family: JuThin;
+}
+.about-me-block {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 1.5px rgb(101, 101, 101);
+    
+}
+
+
+.about-me-header {
+    font-family: Ju;
+    font-size: 7.5rem;
+    color: rgb(56, 54, 54);
+    text-shadow: 2px 2px 4px rgb(84, 83, 83);
+}
+
+.about-me-body {
+    line-height: 125%;
+}
+.about-me-body > ul {
+    margin-top: 1rem;
+}
+
+.about-me-image {
+    height: 37rem;
 }
