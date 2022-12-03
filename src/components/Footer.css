@@ -1,0 +1,20 @@
+@font-face {
+    font-family: JuThin;
+    src: url(../fonts/Ju/JuPlusLight-519yx.otf);
+}
+
+footer {
+    margin-top: 5rem;
+    border-top: 1px solid rgb(181, 174, 174);
+    box-shadow: 0 -8px 15px 1px rgba(203, 196, 196, 0.5);
+    color: rgb(121, 119, 119);
+}
+.footer-block {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+.footer-block > p {
+    margin: 0;
+    font-family: JuThin;
+    text-shadow: .4px .4px .8px rgb(137, 136, 136);
+}

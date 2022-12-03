@@ -9,7 +9,7 @@ import ThemeContext from "./context/ThemeContext";
 import { useState, useEffect} from "react";
 // import Notifications from "./components/Notifications";
 import Cart from "./components/Cart";
-// import DataProductsContext from "./context/DataProductsContext";
+import Footer from "./components/Footer";
 
 
 
@@ -49,6 +49,7 @@ function App() {
             </Routes>
         </Row>
       </Container>
+      <Footer />
     </ThemeContext.Provider>
      
   </BrowserRouter>
