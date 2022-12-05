@@ -1,0 +1,27 @@
+@font-face {
+    font-family: Ju;
+    src: url(../fonts/Ju/JuPlusMedium-ywyYq.otf);
+}
+
+@font-face {
+    font-family: JuThin;
+    src: url(../fonts/Ju/JuPlusLight-519yx.otf);
+}
+
+.single-product-block {
+    margin-top: 3rem;
+}
+
+.single-product-image {
+    height: 30rem;
+    box-shadow: 0px 0px 10px 8px rgb(206, 206, 206);
+}
+
+.single-product-text {
+    margin-left: 2rem;
+    font-family: Ju;
+    font-size: 2rem;
+    color: rgb(82, 80, 80);
+    text-shadow: 1px 1px 2px rgb(121, 120, 120);
+
+}

@@ -3,16 +3,17 @@ import { Card, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Product.css";
 
-function Product({ product, addToCart }) {
+function Product({ product, addToCart}) {
     const [cartButton, setCartButton] = useState(false);
     const [colorCartButton, setColorCartButton] = useState(false);
+
 
 
     return <Col sm={6} md={4} lg={3} className={'d-flex'}>
         <Card style={{ border: "none" }} className="text-dark card-item"
         onMouseEnter={() => setCartButton(true)}
         onMouseLeave={() => setCartButton(false)}> 
-        <Card.Img variant="top" src={product.img} className="card-image" />
+        <Card.Img variant="top" src={product.image} className="card-image" />
         <Card.Body>
         <Button className={cartButton ? "add-to-cart-button" : "d-none add-to-cart-button"} 
             variant={colorCartButton ? "success": "secondary"}

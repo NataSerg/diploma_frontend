@@ -6,56 +6,37 @@ import ThemeContext from "../context/ThemeContext"
 import "./Products.css";
 
 
-function Products({products, setProducts, totalCount, setTotalCount}) {
+function Products({ totalCount, setTotalCount }) {
     
+    const [products, setProducts] = useState([]);
     const [registartionFlag, setRegistartionFlag] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [pagesArray, setPagesArray] = useState([]);
-    
+    const [total, setTotal] = useState(0);
+    const [limit, setLimit] = useState(4);
     const { setAlert } = useContext(ThemeContext);
+
+
    
-const data = {
-            products: [
-                { "id": 1, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/1.jpg" },
-                { "id": 2, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/2.jpg" },
-                { "id": 3, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/3.jpg" },
-                { "id": 4, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/4.jpg" },
-                { "id": 5, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/5.jpg" },
-                { "id": 6, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/6.jpg" },
-                { "id": 7, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/7.jpg" },
-                { "id": 8, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/8.jpg" },
-                { "id": 9, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/9.jpg" },
-                { "id": 10, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/10.jpg" },
-                { "id": 11, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/11.jpg" },
-                { "id": 12, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/12.jpg" },
-                { "id": 13, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/13.jpg" },
-                { "id": 14, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/14.jpg" },
-                { "id": 15, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/15.jpg" },
-                { "id": 16, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/16.jpg" },
-                { "id": 17, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/17.jpg" },
-                { "id": 18, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/18.jpg" },
-                { "id": 19, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/19.jpg" },
-                { "id": 20, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/20.jpg" },
-                { "id": 21, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/21.jpg" },
-                { "id": 22, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/22.jpg" },
-                { "id": 23, "colored": true, "title": "ledenovaart", "price": 12, "img": "/images/23.jpg" },
-                { "id": 24, "colored": false, "title": "ledenovaart", "price": 12, "img": "/images/24.jpg" },
-
-            ], total: 24, skip: 0, limit: 8
-    };
-
+    useEffect(() => {
+        fetch("https://lionfish-app-3rfne.ondigitalocean.app/api/products").then(res => res.json()).then(data => {
+            setProducts(data.map(product => ({ ...product, addedToCart: false, count: 1 })));
+            console.log(data);
+        })
+           
+    }, []);
 
     useEffect(() => {
-        setProducts(data.products.map(product => ({ ...product, addedToCart: false, count: 1 })));     
+        setTotal(products.length);
+        let pages = total / limit;
+            if (total % limit) { pages += 1 };
+            let temp = [];
+            for (let item = 1; item <= pages; item++) {
+            temp.push(item);}
+            setPagesArray(temp);
         
-        const pages = data.total / data.limit;
-        if (data.total % data.limit) { pages += 1 };
-        let temp = [];
-        for (let item = 1; item <= pages; item++) {
-            temp.push(item);
-        }
-        setPagesArray(temp);
-    }, []);
+    }, [products])
+    
    
     useEffect(() => {
         if (!localStorage.getItem('shop_user')) {
@@ -77,20 +58,19 @@ const data = {
     }
 
     
-    return <> <Outlet context={products} />
+    return <>
         <Col xs={12}><div className="mt-4 mb-4 d-flex justify-content-center">
-            <button type="button" class="btn btn-secondary m-1">See all</button>
-            <button type="button" class="btn btn-secondary m-1">White and black</button>
-            <button type="button" class="btn btn-secondary m-1">Vintage</button>
-            <button type="button" class="btn btn-secondary m-1">City illustartion</button>
-            <button type="button" class="btn btn-secondary m-1">Children's illustartion</button>
+            <button type="button" className="btn btn-secondary m-1">See all</button>
+            <button type="button" className="btn btn-secondary m-1">White and black</button>
+            <button type="button" className="btn btn-secondary m-1">Vintage</button>
+            <button type="button" className="btn btn-secondary m-1">City illustartion</button>
+            <button type="button" className="btn btn-secondary m-1">Children's illustartion</button>
         </div></Col>
-        {(products.filter(product => product.id > ((currentPage - 1) * data.limit) && product.id <= ((currentPage - 1) * data.limit) + data.limit)).map(product =>
+
+        {(products.filter(product => products.indexOf(product) >= ((currentPage - 1) * limit) && products.indexOf(product) < ((currentPage - 1) * limit) + limit)).map(product =>
         <Product product={product}
             key={product.id}
-            addToCart={addToCart}
-        />
-        )}
+            addToCart={addToCart}/>)}
 
     {registartionFlag ? <Navigate to="/registartion" /> : ''}    
 

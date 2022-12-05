@@ -18,10 +18,8 @@ function App() {
  
   const [theme, setTheme] = useState('bg-white');
   const [user, setUser] = useState({});
-  const [products, setProducts] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  console.log(user);
 
   useEffect(() => {
         if (localStorage.getItem('shop_user')) {
@@ -33,18 +31,16 @@ function App() {
   }, []);
 
   return <BrowserRouter>
-    <ThemeContext.Provider value={{ theme, setTheme, user, setUser, products, setProducts, totalCount, setTotalCount}}>
+    <ThemeContext.Provider value={{ theme, setTheme, user, setUser, totalCount, setTotalCount}}>
       <Header totalCount={totalCount} />
     <Container className={`p-2 ${theme}`}>
         <Row>
             <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/products" element={<Products products={products} setProducts={setProducts} totalCount={totalCount} setTotalCount={setTotalCount} />}>
-                <Route path={":productId"} element={<SingleProduct />}></Route>
-            </Route>
+            <Route path="/products" element={<Products totalCount={totalCount} setTotalCount={setTotalCount} />}></Route>
+            <Route path="/products/:id" element={<SingleProduct />}></Route>
             <Route path="/registartion" element={<Profile user={user} setUser={setUser}/>}></Route>
-            <Route path="/cart" element={<Cart products={products} setProducts={setProducts}
-              totalCount={totalCount} setTotalCount={setTotalCount} />}></Route>  
+            <Route path="/cart" element={<Cart totalCount={totalCount} setTotalCount={setTotalCount} />}></Route>  
             <Route path="*" element={<h1>Page not found</h1>}></Route>
             </Routes>
         </Row>

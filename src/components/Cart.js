@@ -7,32 +7,32 @@ import ThemeContext from "../context/ThemeContext";
 
 
 
-function Cart({ products, setProducts, totalCount, setTotalCount}) {
+function Cart({totalCount, setTotalCount}) {
     const [total, setTotal] = useState(0);
     const { theme, user } = useContext(ThemeContext);
     const [colorButton, setColorButton] = useState(false);
     const [colorButtonOrder, setColorButtonOrder] = useState(false);
 
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const newTotal = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + (product.price * product.count), 0);
-        setTotal(newTotal);
+    //     const newTotal = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + (product.price * product.count), 0);
+    //     setTotal(newTotal);
 
-        const newTotalCount = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + product.count, 0);
-        setTotalCount(newTotalCount);
+    //     const newTotalCount = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + product.count, 0);
+    //     setTotalCount(newTotalCount);
 
         
 
-    }, [products]);
+    // }, [products]);
 
-    const changeCount = (id, newCount) => {
-        setProducts(products.map(product => product.id === id ? { ...product, count: newCount } : { ...product })); 
-    }
+    // const changeCount = (id, newCount) => {
+    //     setProducts(products.map(product => product.id === id ? { ...product, count: newCount } : { ...product })); 
+    // }
 
-     const removeFromCart = id => {
-        setProducts(products.map(product => product.id === id ? { ...product, addedToCart: false, count: 1 } : { ...product })); 
-    }
+    //  const removeFromCart = id => {
+    //     setProducts(products.map(product => product.id === id ? { ...product, addedToCart: false, count: 1 } : { ...product })); 
+    // }
 
    
 
@@ -45,8 +45,9 @@ function Cart({ products, setProducts, totalCount, setTotalCount}) {
             <CartItem
             product={product}
             key={product.id}
-            changeCount={changeCount}
-            removeFromCart={removeFromCart}/>)}
+            // changeCount={changeCount}
+            // removeFromCart={removeFromCart}
+            />)}
         </ListGroup>
         <div className="text-center">
             <h5>You are ordering {totalCount} postcards, total is ${total}</h5>
