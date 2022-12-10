@@ -19,8 +19,8 @@ function Products({ totalCount, setTotalCount }) {
 
    
     useEffect(() => {
-        fetch("https://lionfish-app-3rfne.ondigitalocean.app/api/products").then(res => res.json()).then(data => {
-            setProducts(data.map(product => ({ ...product, addedToCart: false, count: 1 })));
+        fetch("https://sea-lion-app-fv7pa.ondigitalocean.app/api/products/").then(res => res.json()).then(data => {
+            setProducts(data.results.map(product => ({ ...product, addedToCart: false, count: 1 })));
             console.log(data);
         })
            
@@ -38,11 +38,7 @@ function Products({ totalCount, setTotalCount }) {
     }, [products])
     
    
-    useEffect(() => {
-        if (!localStorage.getItem('shop_user')) {
-          setRegistartionFlag(true);
-        }
-    }, []);
+    
 
     useEffect(() => {
         const newTotalCount = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + product.count, 0);
@@ -72,7 +68,6 @@ function Products({ totalCount, setTotalCount }) {
             key={product.id}
             addToCart={addToCart}/>)}
 
-    {registartionFlag ? <Navigate to="/registartion" /> : ''}    
 
         <Col xs={12} className={'mt-4'}>
             <Pagination>

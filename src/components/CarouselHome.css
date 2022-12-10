@@ -1,0 +1,16 @@
+.ledenova-art-block div .carousel-img {
+    height: 18rem;
+    width: 14rem;
+}
+
+.ledenova-art-block .carousel-control-prev>span.carousel-control-prev-icon {
+    display: none;
+}
+
+.ledenova-art-block .carousel-control-next>span.carousel-control-next-icon {
+    display: none;
+}
+
+.ledenova-art-block div.carousel-indicators {
+    display: none;
+}
