@@ -1,5 +1,7 @@
+.start-page {
+    margin-top: 2rem;
+}
 .logo {
-    margin-right: 7rem;
     font-family: Ju;
     font-size: 10rem;
     color: rgb(56, 54, 54);
@@ -7,11 +9,8 @@
     line-height: 70%;
 }
 
-.ledenova-art-block {
-    width: 100%;
-}
 
-.ledenova-art-block>div>img {
+.ledenova-art-block> .first-page-carousel >img {
     height: 17rem;
 }
 

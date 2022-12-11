@@ -20,7 +20,7 @@ function AuthorizationForm() {
             <Form.Label className="mt-3">Password</Form.Label>
             <Form.Control value={password} onChange={(event)=>setPassword(event.target.value)} type="text" placeholder="Enter password" />
             
-            <Button variant="secondary" size="lg" className="mt-4" onClick={()=>dispatch(login(email, password))}>Save</Button>
+            <Button variant="secondary" size="lg" className="mt-4" onClick={()=>dispatch(login(email, password))}>Login</Button>
         </Form.Group>
     </Col>
 }

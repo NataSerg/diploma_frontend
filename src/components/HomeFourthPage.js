@@ -1,28 +1,25 @@
 import "./HomeFourthPage.css";
 import { Carousel } from "react-bootstrap";
 import CarouselHome from "./CarouselHome";
+import { Col} from "react-bootstrap";
+
 
 
 function HomeFourthPage() {
-    return <div className="d-flex align-items-center justify-content-center">
-      <div className="logo d-flex flex-column">
+  return <>
+      <Col lg={6} md={8} xs={10} className="logo d-flex flex-column justify-content-center mt-5">
         <p>LEDE</p>
         <p>NOVA</p>
         <p>ART</p>
-      </div>
-      <div className="d-flex ledenova-art-block align-items-center">
-        <div className="block-one"> 
-          <CarouselHome />
-        </div>
-        <div className="block-two d-flex flex-column">
-          <CarouselHome />
-          <CarouselHome />
-        </div>
-        <div className="block-three">
-          <CarouselHome />
-        </div>
-      </div>
-    </div>
+      </Col>
+      <Col lg={3} md={5} xs={5} className="ledenova-art-block d-flex flex-column justify-content-center mt-5">
+        <CarouselHome className="first-page-carousel"/>        
+      </Col>
+      <Col lg={3} md={5} xs={5} className="ledenova-art-block d-flex flex-column justify-content-center mt-5">
+        <CarouselHome className="first-page-carousel"/>
+        <CarouselHome className="first-page-carousel"/>
+    </Col>
+  </>
 }
 
 export default HomeFourthPage;

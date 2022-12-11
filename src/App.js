@@ -36,7 +36,7 @@ function App() {
   return <BrowserRouter>
     <ThemeContext.Provider value={{ theme, setTheme, user, setUser, totalCount, setTotalCount}}>
       <Header totalCount={totalCount} />
-    <Container className={`p-2 ${theme}`}>
+    <Container className={`p-2 fluid ${theme}`}>
         <Row>
             <Routes>
             <Route path="/" element={<Home />}></Route>

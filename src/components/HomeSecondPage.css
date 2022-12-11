@@ -1,4 +1,4 @@
-.second-home-page {
+.first-column {
     position: relative;
 }
 
@@ -9,9 +9,9 @@
     font-size: 6.5rem;
     color: rgb(65, 65, 65);
     text-shadow: 2px 2px 4px rgb(84, 83, 83);
-    top: 45%;
-    left: 17%;
-    z-index: 3;
+    top:40%;
+    left: 100%;
+    z-index: 5;
     line-height: 80%;
 
 }
@@ -26,3 +26,63 @@ button.second-page-button.btn.btn-secondary.btn-lg:hover {
     background-color: rgb(247, 247, 247);
     color: rgb(45, 44, 44);
 }
+
+.carousel-grid-item .carousel-img {
+    margin-top: 6rem;
+    height: 15rem;
+    width: 12rem;
+    opacity: 0.6;
+}
+.carousel-grid-item .carousel-control-prev>span.carousel-control-prev-icon {
+    display: none;
+}
+.carousel-grid-item .carousel-control-next>span.carousel-control-next-icon {
+    display: none;
+}
+.carousel-grid-item div.carousel-indicators {
+    display: none;
+}
+
+.third-column, .second-column {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .third-column, .second-column{
+        display: none;
+    }
+    .second-page-text {
+        left: .5%;
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    .second-column{
+        display: flex;
+        flex-direction: column;
+    }
+    .third-column {
+        display: none;
+    }
+    .second-page-text{
+        left: 50%;
+    }
+
+
+}
+@media screen and (min-width: 992px) {
+    .third-column {
+        display: flex;
+        flex-direction: column;
+    }
+    .second-page-text {
+        left: 100%;
+    }
+
+}
+
+    
