@@ -1,0 +1,14 @@
+h4 {
+    margin-bottom: 2rem;
+    font-family: Ju;
+    color: rgb(91, 91, 91);
+
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #929292;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(168, 168, 168, 0.25);
+}

@@ -4,54 +4,102 @@ import { ListGroup, Badge, Button, Col } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import ThemeContext from "../context/ThemeContext";
+import { useDispatch, useSelector } from "react-redux";
+import { cartUpdate, addToCart } from "../actions/user";
+import axios from "axios";
+
+
+
 
 
 
 function Cart({totalCount, setTotalCount}) {
     const [total, setTotal] = useState(0);
-    const { theme, user } = useContext(ThemeContext);
     const [colorButton, setColorButton] = useState(false);
     const [colorButtonOrder, setColorButtonOrder] = useState(false);
+    const [cartArray, setCartArray] = useState([]);
+    const [newCartUpdate, setNewCartUpdate] = useState('');
 
 
-    // useEffect(() => {
-        
-    //     const newTotal = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + (product.price * product.count), 0);
-    //     setTotal(newTotal);
+    const userCart = useSelector(state => state.user.userCart);
+    const dispatch = useDispatch()
 
-    //     const newTotalCount = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + product.count, 0);
-    //     setTotalCount(newTotalCount);
+  useEffect(() => {
+    dispatch(cartUpdate())
+  }, [newCartUpdate])
 
-        
 
-    // }, [products]);
+    useEffect(() => {
+        setCartArray(userCart.map(item => item));
+    }, [userCart])
 
-    // const changeCount = (id, newCount) => {
-    //     setProducts(products.map(product => product.id === id ? { ...product, count: newCount } : { ...product })); 
-    // }
+    const changeCount = async (id, quantity) => {
+        const accessToken = localStorage.access
+        console.log(quantity);
+         try {
+             const response = await axios.put(`https://sea-lion-app-fv7pa.ondigitalocean.app/api/cart/`,
+                 {
+                     id,
+                     quantity
+                 }, {
+                 headers: {
+                     'Authorization': 'Bearer ' + accessToken,
+                     'Content-Type': 'application/json'
+                 }
+             })
+            setNewCartUpdate(response.data)
+         } catch (error) {
+             console.log(error.response.data.message)
+     }
+    }
 
-    //  const removeFromCart = id => {
-    //     setProducts(products.map(product => product.id === id ? { ...product, addedToCart: false, count: 1 } : { ...product })); 
-    // }
 
-   
+    const deleteFromCart = async (id) => {
+        const accessToken = localStorage.access
+         try {
+             const response = await axios.delete(`https://sea-lion-app-fv7pa.ondigitalocean.app/api/cart/`,
+                 {
+                     headers: {
+                         'Authorization': 'Bearer ' + accessToken,
+                         'Content-Type': 'application/json'
+                     },
+                     data: {
+                         id: id,
+                     }
+                 });
+            setNewCartUpdate(response.data)
+         } catch (error) {
+             console.log(error.response.data.message)
+     }
+    }
+
+    function sortCartArray(a, b) {
+        if (a.id > b.id) {
+            return 1;
+        } else if (b.id > a.id) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+    
+
 
     return <> <Col>
         <h3 className="text-center">Cart</h3>
-    {(JSON.parse(localStorage.getItem("cart"))).length ? 
-    <div className={`cart-block ${theme}`}>
+    {cartArray.length ? 
+    <div className="cart-block">
         <ListGroup>
-        {(JSON.parse(localStorage.getItem("cart"))).map(product =>
+        {(cartArray.sort(sortCartArray)).map(item =>
             <CartItem
-            product={product}
-            key={product.id}
-            // changeCount={changeCount}
-            // removeFromCart={removeFromCart}
-            />)}
+                item={item}
+                key={item.product.id}
+                setNewCartUpdate={setNewCartUpdate}
+                changeCount={changeCount}
+                deleteFromCart={deleteFromCart}/>)}
         </ListGroup>
         <div className="text-center">
-            <h5>You are ordering {totalCount} postcards, total is ${total}</h5>
-                <p>Your order is sent to {user?.email}</p> 
+            <h5>You are ordering {cartArray.reduce((acc, item) => acc + item.quantity, 0)} arts, total is ${cartArray.reduce((acc, item) => acc + item.price, 0)}</h5>
             <div className="d-flex justify-content-center">
                     <Link to="/products/"><Button className="m-1" variant={colorButton ? "success":"secondary"} size="lg"
                         onMouseEnter={() => setColorButton(true)}
@@ -61,21 +109,16 @@ function Cart({totalCount, setTotalCount}) {
                         onMouseLeave={() => setColorButtonOrder(false)}>To order postcards</Button></Link> 
             </div>
                 </div>
-        
         </div> :
-        <div className={`cart-block p-5 d-flex flex-column align-items-center ${theme}`}>
+        <div className={`cart-block p-5 d-flex flex-column align-items-center`}>
                 <h4 className="text-center mb-5">Your cart is empty</h4>
                 <Link to="/products/">
                     <Button className="cart-empty-button" variant={colorButton ? "success":"secondary"} size="lg"
                         onMouseEnter={() => setColorButton(true)}
                         onMouseLeave={() => setColorButton(false)}>Continue shopping</Button>
                 </Link>
-
-        </div>
-    }
-    </Col>
-        
-        
+        </div>}
+    </Col>        
             </>
 }
 

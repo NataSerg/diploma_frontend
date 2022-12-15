@@ -11,7 +11,7 @@ function SingleProduct() {
 
 
     useEffect(() => {
-        fetch(`https://sea-lion-app-agieg.ondigitalocean.app/api/products/${id}`).then(res => res.json()).then(data => {
+        fetch(`https://sea-lion-app-fv7pa.ondigitalocean.app/api/products/${id}`).then(res => res.json()).then(data => {
             setProduct(data);
         })
     }, [id]);

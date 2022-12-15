@@ -1,3 +1,5 @@
+
+
 .header {
     border: 1px solid rgb(181,174,174);
     box-shadow: 0 5px 15px 6px rgba(181, 174, 174, 0.5);
@@ -19,4 +21,12 @@
 .cart-count-white {
     color: white;
 }
+
+a:-webkit-any-link {
+    background: transparent !important;
+}
+
+
+
+
 

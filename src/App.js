@@ -10,31 +10,32 @@ import { useState, useEffect} from "react";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import RegistrationForm from "./components/RegistrationForm";
-import AuthorizationForm from "./components/AuthorizationForm";
+import LoginForm from "./components/LoginForm";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "./actions/user";
-
-
-
+import { auth, cartUpdate } from "./actions/user";
 
 
 function App() {
  
   const [theme, setTheme] = useState('bg-white');
-  const [user, setUser] = useState({});
   const [totalCount, setTotalCount] = useState(0);
 
+  const accessToken = useSelector(state => state.user.access);
   const isAuth = useSelector(state => state.user.isAuth)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(auth())
   }, [])
-  
-  
+
+
+    useEffect(() => {
+        dispatch(cartUpdate());
+  }, [accessToken])
+
 
   return <BrowserRouter>
-    <ThemeContext.Provider value={{ theme, setTheme, user, setUser, totalCount, setTotalCount}}>
+    <ThemeContext.Provider value={{ theme, setTheme, totalCount, setTotalCount}}>
       <Header totalCount={totalCount} />
     <Container className={`p-2 fluid ${theme}`}>
         <Row>
@@ -43,7 +44,7 @@ function App() {
             <Route path="/products" element={<Products totalCount={totalCount} setTotalCount={setTotalCount} />}></Route>
             <Route path="/products/:id" element={<SingleProduct />}></Route>
             {!isAuth && <Route path="/registartion" element={<RegistrationForm />}></Route>}
-            <Route path="/authorization" element={<AuthorizationForm />}></Route>
+            <Route path="/authorization" element={<LoginForm />}></Route>
             <Route path="/cart" element={<Cart totalCount={totalCount} setTotalCount={setTotalCount} />}></Route>  
             <Route path="*" element={<h1>Page not found</h1>}></Route>
             </Routes>

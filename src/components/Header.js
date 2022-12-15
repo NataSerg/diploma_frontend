@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container, Badge } from "react-bootstrap"
+import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
 import {BsCart4} from "react-icons/bs";
 import "./Header.css";
@@ -16,12 +16,15 @@ function Header({totalCount}) {
         <Container>
             <Link to="/" className="navbar-brand">Home</Link>
             <Nav className="me-auto">
+                
                 <Link to="/cart" className={`cart-in-header ${location.pathname === "/cart" ? "nav-link active" : "nav-link"}`}><BsCart4 className="cart-icon" /><Badge bg={totalCount===0 ? "white" : "success"} className={totalCount===0 ? "cart-count-white" : "cart-count"}>{totalCount}</Badge></Link>
                 <Link to="/products" className={location.pathname === "/products" ? "nav-link active" : "nav-link"}>Products</Link>
-                {!isAuth && <Link to="/registartion" className={location.pathname === "/registartion" ? "nav-link active" : "nav-link"}>Create account</Link>}
-                {!isAuth && <Link to="/authorization" className={location.pathname === "/authorization" ? "nav-link active" : "nav-link"}>Log in</Link>}
-                {isAuth && <Link to="/" className="nav-link" onClick={()=>dispatch(logout())}>Log out</Link>}
-
+                {isAuth && <Link to="/" className="nav-link" onClick={() => dispatch(logout())}>Log out</Link>}
+                {!isAuth && <NavDropdown title="Log in" id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="/authorization" className={location.pathname === "/authorization" ? "nav-link active text-center" : "nav-link text-center"}>Log in</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/registartion" className={location.pathname === "/registartion" ? "nav-link active text-center" : "nav-link text-center"}>Create account</NavDropdown.Item>
+                </NavDropdown>}
             </Nav>
         </Container>
     </Navbar>
