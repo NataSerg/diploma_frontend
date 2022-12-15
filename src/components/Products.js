@@ -71,17 +71,7 @@ function Products({ totalCount, setTotalCount }) {
             setPagesArray(temp);
         
     }, [products])
-    
-   
-    
-
-    useEffect(() => {
-        const newTotalCount = (products.filter(product => product.addedToCart)).reduce((acc, product) => acc + product.quantity, 0);
-        setTotalCount(newTotalCount);
-
-    }, [products]);
-
-   
+       
     
     return <>
         <Col xs={12}><div className="mt-4 mb-4 d-flex justify-content-center">
