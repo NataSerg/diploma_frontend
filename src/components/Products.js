@@ -18,11 +18,13 @@ function Products({ totalCount, setTotalCount }) {
     const [limit, setLimit] = useState(4);
     const [cartItemsArray, setCartItemsArray] = useState([]);
     const [newCartUpdate, setNewCartUpdate] = useState('');
-
+    const [productUpdate, setProductUpdate] = useState('');
 
 
     const userCart = useSelector(state => state.user.userCart);
     const dispatch = useDispatch()
+
+ 
 
     useEffect(() => {
         dispatch(cartUpdate())
@@ -54,25 +56,22 @@ function Products({ totalCount, setTotalCount }) {
 
    
     useEffect(() => {
-        fetch("https://sea-lion-app-fv7pa.ondigitalocean.app/api/products/").then(res => res.json()).then(data => {
+        fetch(`https://sea-lion-app-fv7pa.ondigitalocean.app/api/products/?page=${currentPage}`).then(res => res.json()).then(data => {
             setProducts(data.results.map(product => ({ ...product, quantity: 1 })));
             console.log(data);
-        })
-           
-    }, []);
-
-    useEffect(() => {
-        setTotal(products.length);
-        let pages = total / limit;
-            if (total % limit) { pages += 1 };
+            const limit = 8;
+            let pages = data.count / limit;
+            if (data.count % limit) { pages += 1 };
             let temp = [];
             for (let item = 1; item <= pages; item++) {
             temp.push(item);}
             setPagesArray(temp);
-        
-    }, [products])
-       
+        })
+           
+    }, [currentPage, productUpdate]);
+
     
+
     return <>
         <Col xs={12}><div className="mt-4 mb-4 d-flex justify-content-center">
             <button type="button" className="btn btn-secondary m-1">See all</button>
@@ -82,14 +81,15 @@ function Products({ totalCount, setTotalCount }) {
             <button type="button" className="btn btn-secondary m-1">Children's illustartion</button>
         </div></Col>
 
-        {(products.filter(product => products.indexOf(product) >= ((currentPage - 1) * limit) && products.indexOf(product) < ((currentPage - 1) * limit) + limit)).map(product =>
-            <Product product={product}
+        {products.map(product =>
+            <Product 
+                product={product}
                 key={product.id}
                 currentId={product.id}
                 addToCart={addToCart}
                 setNewCartUpdate={setNewCartUpdate}
-                cartItemsArray={cartItemsArray} />)}
-
+                cartItemsArray={cartItemsArray}
+                setProductUpdate={setProductUpdate} />)}
 
         <Col xs={12} className={'mt-4'}>
             <Pagination>

@@ -13,6 +13,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, cartUpdate } from "./actions/user";
+import "./App.css";
 
 
 function App() {

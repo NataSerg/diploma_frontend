@@ -1,15 +1,17 @@
-import { Container } from "react-bootstrap";
 import "./Footer.css";
+import {Container} from "react-bootstrap"
+
 
 function Footer() {
     return <>
-        <footer>
-            <Container className="footer-block">
-                <p>2022 ©Ledenova Art</p>
-                <p>Pictures drawn with heart♥</p>
-            </Container>
+        <footer className="footer-block mt-auto">
+            <Container>
+                <p>2022 ©Ledenova Art <br/>
+                    Pictures drawn with heart♥
+                    </p>
+            </Container>    
         </footer>
-    </>
+        </>
 }
 
 export default Footer;
